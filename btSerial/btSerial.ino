@@ -6,7 +6,7 @@
 
 BluetoothSerial SerialBT;
 
-#define BUFFER_SIZE 300 // max of 300 bytes
+#define BUFFER_SIZE 4000 // max of 4 K
 
 uint8_t bufRecv[BUFFER_SIZE];
 uint8_t bufSend[BUFFER_SIZE];
