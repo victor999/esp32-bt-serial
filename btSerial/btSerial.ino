@@ -6,7 +6,7 @@
 
 BluetoothSerial SerialBT;
 
-#define BUFFER_SIZE 4000 // max of 4 K
+#define BUFFER_SIZE 1000 // max of 1 K
 
 uint8_t bufRecv[BUFFER_SIZE];
 uint8_t bufSend[BUFFER_SIZE];
@@ -20,16 +20,17 @@ void setup() {
 void loop() 
 {
   //sending to BT
-  if (Serial.available()) 
+
+  int bytesInSerial = Serial.available();
+  if (bytesInSerial) 
   {
-    //SerialBT.write(Serial.read());
-    size_t bufSize = 0;
-    while (Serial.available() && bufSize < BUFFER_SIZE) 
+    int bytesRead = Serial.readBytes(bufSend, bytesInSerial);
+
+    if(bytesRead)
     {
-      bufSend[bufSize] = Serial.read();
-      bufSize++;
+      //send data to radio
+      SerialBT.write(bufSend, bytesRead);
     }
-    SerialBT.write(bufSend, bufSize);
   }
 
   //receiving from BT
