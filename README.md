@@ -5,7 +5,9 @@ Can be used when you need bidirectional bridge for Bluetooth to serial port and 
 
 I am using it for MavLink connection to my quadcopter, running ardupilot.
 
-The main difference from the code that you can find on the Internet (send char by char) is sending data by packets with MAX length of 300 bytes. It dramatically improves communication speed.
+The main difference from the code that you can find on the Internet (send char by char) is sending data by packets with MAX length of 1000 bytes. It dramatically improves communication speed.
+
+Recently I found that connection is even better than HC-06 module
 
 Usage:
 
