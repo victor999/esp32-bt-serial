@@ -13,7 +13,7 @@ Usage:
 
 1. Connect RX/TX of your ESP32 to your serial port. (ESP32 RX goest to port TX and so on). 
 
-2. Define it in your telemetry output. Like "arducopter -D /dev/ttyO5". Baudrate is 57600
+2. Define it in your telemetry output. Like "arducopter ... -D /dev/ttyO5 ...". Baudrate is 57600 - default baudrate in arducopter
 
 3. At your laptop discover Bluetooth device "ESP32test"
 
