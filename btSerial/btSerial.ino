@@ -8,23 +8,26 @@ BluetoothSerial SerialBT;
 
 #define BUFFER_SIZE 1000 // max of 1 K
 
+#define RXD2 16
+#define TXD2 17
+
 uint8_t bufRecv[BUFFER_SIZE];
 uint8_t bufSend[BUFFER_SIZE];
 
 void setup() {
-  Serial.begin(57600);
-  SerialBT.begin("ESP32test"); //Bluetooth device name
-  Serial.println("The device started, now you can pair it with bluetooth!");
+  Serial2.begin(115200);
+  SerialBT.begin("BT-serial"); //Bluetooth device name
+  Serial2.println("The device started, now you can pair it with bluetooth!");
 }
 
 void loop() 
 {
   //sending to BT
 
-  int bytesInSerial = Serial.available();
+  int bytesInSerial = Serial2.available();
   if (bytesInSerial) 
   {
-    int bytesRead = Serial.readBytes(bufSend, bytesInSerial);
+    int bytesRead = Serial2.readBytes(bufSend, bytesInSerial);
 
     if(bytesRead)
     {
@@ -36,13 +39,13 @@ void loop()
   //receiving from BT
   if (SerialBT.available()) 
   {
-    //Serial.write(SerialBT.read());
+    //Serial2.write(SerialBT.read());
     size_t bufSize = 0;
     while (SerialBT.available() && bufSize < BUFFER_SIZE) 
     {
       bufRecv[bufSize] = SerialBT.read();
       bufSize++;
     }
-    Serial.write(bufRecv, bufSize);
+    Serial2.write(bufRecv, bufSize);
   }
 }
